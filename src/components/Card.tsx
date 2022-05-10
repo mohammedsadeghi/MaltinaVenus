@@ -5,18 +5,19 @@ import { Text, View, StyleSheet,Image } from 'react-native';
 const styles = StyleSheet.create({
   card: {
     width:'100%',
-    minHeight:'100px',
-    borderBottom: '1px solid #ccc',
+    height:'100px',
+    borderBottom: '1px solid #eaeaea',
     padding:'0.5rem',
+    paddingRight:"1rem",
     display: 'flex',
     flexDirection: 'row-reverse',
     justifyContent:"space-between",
     alighItems:"center"
   },
   productImg: {
-    maxWidth: "7rem",
-    minWidth: "5rem",
-    height:"5rem",
+    maxWidth: "6rem",
+    minWidth: "4rem",
+    height:"4rem",
     margin:"auto"
   },
   title: {
@@ -27,26 +28,30 @@ const styles = StyleSheet.create({
     marginTop:"0.25rem",
     marginBottom:"0.25rem",
     fontWieght:"100",
-    height:24,
   }
 })
 
 
-const Card= ({productData}) => {
+const Card= ({cardInfo}) => {
   return (
     <View style={[styles.card]}>
       <View>
         <Image
-          accessibilityLabel={productData.title}
-        source={productData.image}
+          accessibilityLabel={cardInfo.title}
+        source={cardInfo.image}
           resizeMode="contain"
           style={styles.productImg}
         />
       </View>
       <View style={{flex:1}}>
         <Text>star component</Text>
-        <Text style={[styles.title]}>{productData.title}</Text>
-        <Text>cost component</Text>
+        <Text 
+          numberOfLines={2} 
+          style={[styles.title]}
+          >
+          {cardInfo.title}
+          </Text>
+        <Text>price component</Text>
       </View>
     </View>
   );
