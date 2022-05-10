@@ -4,36 +4,48 @@ import { Text, View, StyleSheet,Image } from 'react-native';
 
 const styles = StyleSheet.create({
   card: {
-    width:'90%',
-    height:'100px',
+    width:'100%',
+    minHeight:'100px',
     borderBottom: '1px solid #ccc',
     padding:'0.5rem',
     display: 'flex',
     flexDirection: 'row-reverse',
     justifyContent:"space-between",
+    alighItems:"center"
   },
   productImg: {
     maxWidth: "7rem",
     minWidth: "5rem",
     height:"5rem",
+    margin:"auto"
+  },
+  title: {
+    width: "100%",
+    color:"#999",
+    lineHeight:"14px",
+    fontSize:"0.675rem",
+    marginTop:"0.25rem",
+    marginBottom:"0.25rem",
+    fontWieght:"100",
+    height:24,
   }
 })
 
 
-const Card= () => {
+const Card= ({productData}) => {
   return (
     <View style={[styles.card]}>
       <View>
         <Image
-          accessibilityLabel="React logo"
-        source="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"
+          accessibilityLabel={productData.title}
+        source={productData.image}
           resizeMode="contain"
           style={styles.productImg}
         />
       </View>
-      <View>
+      <View style={{flex:1}}>
         <Text>star component</Text>
-        <Text>desciption</Text>
+        <Text style={[styles.title]}>{productData.title}</Text>
         <Text>cost component</Text>
       </View>
     </View>
