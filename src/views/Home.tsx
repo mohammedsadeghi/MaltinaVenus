@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
 import {useQuery} from 'react-query';
 import {View, TextInput, StyleSheet, Text} from 'react-native';
-import {getProducts} from '../services/CrudSerive';
+import {getProducts} from '../services/CrudService';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 export const Home: FC = () => {
   const [searchText, setSearchText] = useState<string>('');
