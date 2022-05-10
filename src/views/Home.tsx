@@ -1,8 +1,26 @@
 import React, {FC, useState} from 'react';
+import {useQuery} from 'react-query';
 import {View, TextInput, StyleSheet, Text} from 'react-native';
+import {getProducts} from '../services/CrudSerive';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 export const Home: FC = () => {
   const [searchText, setSearchText] = useState<string>('');
+  const fetchProducts = async (): Promise<object[]> => {
+    const {products} = await getProducts(searchText).then(res => res.data);
+
+    return products;
+  };
+  const searchSubmit = () => {
+    if (searchText !== '') {
+      refetch();
+    }
+    console.log('end');
+  };
+  const {isLoading, error, data, refetch} = useQuery(
+    'productsData',
+    fetchProducts,
+    {enabled: false},
+  );
   const buttonIcon = (
     <FontAwesome.Button
       name={'remove'}
@@ -14,21 +32,23 @@ export const Home: FC = () => {
     setSearchText('');
   };
   return (
-    <View style={styles.topBar}>
-      <TextInput
-        style={styles.searchInput}
-        onChangeText={setSearchText}
-        value={searchText}
-        placeholder="جستجو"
-      />
-      <View onTouchEnd={clearSearchInput}>{buttonIcon}</View>
+    <View>
+      <View style={styles.topBar}>
+        <TextInput
+          style={styles.searchInput}
+          onChangeText={setSearchText}
+          onSubmitEditing={searchSubmit}
+          value={searchText}
+          placeholder="جستجو"
+        />
+        <View onTouchEnd={clearSearchInput}>{buttonIcon}</View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   searchInput: {
-    // height: 40,
     height: '100%',
     flex: 3,
     textAlign: 'right',
