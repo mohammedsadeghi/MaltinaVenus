@@ -4,7 +4,9 @@ import {Text, View, StyleSheet, Image} from 'react-native';
 import {StarScore} from './StarScore';
 
 type cardInfoProps = {
-  [key: string]: any;
+  cardInfo: {
+    [key: string]: any;
+  };
 };
 
 const Card: React.FC<cardInfoProps> = ({cardInfo}) => {
