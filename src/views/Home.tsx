@@ -1,7 +1,8 @@
 import React, {FC, useState} from 'react';
 import {useQuery} from 'react-query';
-import {View, TextInput, StyleSheet, Text} from 'react-native';
+import {View, TextInput, StyleSheet, Text, FlatList} from 'react-native';
 import {getProducts} from '../services/CrudService';
+import Card from '../components/Card';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 export const Home: FC = () => {
   const [searchText, setSearchText] = useState<string>('');
@@ -20,9 +21,8 @@ export const Home: FC = () => {
     if (searchText !== '') {
       refetch();
     }
-    console.log('end');
   };
-  const {isLoading, error, data, refetch} = useQuery(
+  const {isLoading, error, data, refetch, isFetching} = useQuery(
     'productsData',
     fetchProducts,
     {enabled: false},
@@ -38,7 +38,7 @@ export const Home: FC = () => {
     setSearchText('');
   };
   return (
-    <View>
+    <View style={{display: 'flex'}}>
       <View style={styles.topBar}>
         <TextInput
           style={styles.searchInput}
@@ -49,6 +49,23 @@ export const Home: FC = () => {
         />
         <View onTouchEnd={clearSearchInput}>{buttonIcon}</View>
       </View>
+
+      {isFetching ? (
+        <View>
+          <Text>fetching new data</Text>
+        </View>
+      ) : (
+        <View>
+          {data ? (
+            <FlatList
+              data={data}
+              contentContainerStyle={{paddingBottom: 200}}
+              renderItem={obj => <Card cardInfo={obj.item} />}
+              keyExtractor={(item: any) => item.id}
+            />
+          ) : null}
+        </View>
+      )}
     </View>
   );
 };
