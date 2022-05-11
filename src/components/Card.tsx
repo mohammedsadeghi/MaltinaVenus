@@ -56,11 +56,11 @@ const styles = StyleSheet.create({
     flex: 2,
     width: 150,
     height: 150,
-    maxWidth: 100
   },
   title: {
     textAlign: 'right',
     width: '100%',
+    height: 35,
     color: '#999',
     lineHeight: 14,
     marginTop: 3,
