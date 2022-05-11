@@ -6,7 +6,13 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 export const Home: FC = () => {
   const [searchText, setSearchText] = useState<string>('');
   const fetchProducts = async (): Promise<object[]> => {
-    const {products} = await getProducts(searchText).then(res => res.data);
+    const {products} = await getProducts(searchText).then(res => {
+      if (res.status === 202) {
+        refetch();
+      } else {
+        return res.data;
+      }
+    });
 
     return products;
   };
