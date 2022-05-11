@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingVertical: 20,
   },
   imageContainer: {
     paddingVertical: 8,
@@ -70,8 +71,8 @@ const styles = StyleSheet.create({
   },
   starComponent: {
     position: 'relative',
-    bottom: 10
-  }
+    bottom: 10,
+  },
 });
 
 export default Card;

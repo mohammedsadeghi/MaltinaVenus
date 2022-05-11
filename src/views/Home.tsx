@@ -1,6 +1,13 @@
 import React, {FC, useState} from 'react';
 import {useQuery} from 'react-query';
-import {View, TextInput, StyleSheet, Text, FlatList} from 'react-native';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Text,
+  FlatList,
+  ActivityIndicator,
+} from 'react-native';
 import {getProducts} from '../services/CrudService';
 import Card from '../components/Card';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -51,8 +58,8 @@ export const Home: FC = () => {
       </View>
 
       {isFetching ? (
-        <View>
-          <Text>fetching new data</Text>
+        <View style={styles.activityIndicator}>
+          <ActivityIndicator size="large" color="#00ff00" />
         </View>
       ) : (
         <View>
@@ -88,5 +95,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+  },
+  activityIndicator: {
+    marginVertical: '100%',
   },
 });
