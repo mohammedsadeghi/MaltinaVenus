@@ -4,14 +4,13 @@ import {
   View,
   TextInput,
   StyleSheet,
-  Text,
   FlatList,
   ActivityIndicator,
 } from 'react-native';
 import {getProducts} from '../services/CrudService';
 import Card from '../components/Card';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-export const Home: FC = () => {
+const Home: FC = () => {
   const [searchText, setSearchText] = useState<string>('');
   const fetchProducts = async (): Promise<object[]> => {
     const {products} = await getProducts(searchText).then(res => {
@@ -100,3 +99,4 @@ const styles = StyleSheet.create({
     marginVertical: '100%',
   },
 });
+export default Home;
