@@ -10,11 +10,7 @@ const initialState = {
   error: '',
 };
 
-interface reduxAction {
-  type: string;
-  payload: any;
-}
-const productsReducer = (state = initialState, action: reduxAction) => {
+const productsReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case FETCH_PRODUCTS_REQUEST:
       return {...state, loading: true};
