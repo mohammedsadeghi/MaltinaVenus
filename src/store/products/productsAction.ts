@@ -28,10 +28,9 @@ function fetchProductsFail(error: object) {
 export const fetchProducts = (query: string) => {
     return (dispatch: Dispatch) => {
         dispatch(fetchProductsRequest());
-
         getProducts(query).then(res => {
             if (res.status === 202) {
-                // refetch();
+                fetchProducts(query);
             } else {
                 const products = res.data;
                 dispatch(fetchProductsSuccess(products));
