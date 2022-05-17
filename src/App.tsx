@@ -4,6 +4,7 @@ import {QueryClient, QueryClientProvider} from 'react-query';
 import {Provider} from 'react-redux';
 import store from './store/store';
 import {Home} from './views/Home';
+
 const queryClient = new QueryClient();
 const App = () => {
   return (

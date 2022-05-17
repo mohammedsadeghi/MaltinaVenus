@@ -10,7 +10,7 @@ const Card: React.FC<cardInfoProps> = ({cardInfo}) => {
   return (
     <View>
       <View style={{flex: 2}}>
-        <Text
+        <View
           style={
             cardInfo.price.deal === null ? [styles.hidden] : [styles.discount]
           }>
@@ -19,7 +19,7 @@ const Card: React.FC<cardInfoProps> = ({cardInfo}) => {
             ? (parseFloat(cardInfo.price.main) - parseFloat(cardInfo.price.deal)).toFixed(2)
             : 0}
           $
-        </Text>
+        </View>
         <Text numberOfLines={2} style={[styles.price]}>
           ${cardInfo.price.main}
         </Text>

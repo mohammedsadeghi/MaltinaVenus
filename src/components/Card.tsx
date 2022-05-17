@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
-import {StarScore} from './StarScore';
+import StarScore from './StarScore';
 import Price from './Price';
 
 type cardInfoProps = {
@@ -25,7 +25,10 @@ const Card: React.FC<cardInfoProps> = ({cardInfo}) => {
       </View>
       <View style={{flex: 2}}>
         <Text style={[styles.starComponent]}>
-          <StarScore score={Number(cardInfo.review.stars)} />
+          <StarScore
+            score={Number(cardInfo.review.stars)}
+            reviewCount={cardInfo.review.people}
+          />
         </Text>
         <Text numberOfLines={2} style={[styles.title]}>
           {cardInfo.title}
