@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import StarScore from './StarScore';
@@ -10,7 +9,7 @@ type cardInfoProps = {
   };
 };
 
-const Card: React.FC<cardInfoProps> = ({cardInfo}) => {
+const Card: React.FC<cardInfoProps> = ({ cardInfo }) => {
   return (
     <View style={[styles.card]}>
       <View style={styles.imageContainer}>
@@ -23,19 +22,16 @@ const Card: React.FC<cardInfoProps> = ({cardInfo}) => {
           resizeMode="contain"
         />
       </View>
-      <View style={{flex: 2}}>
-        <Text style={[styles.starComponent]}>
-          <StarScore
-            score={Number(cardInfo.review.stars)}
-            reviewCount={cardInfo.review.people}
-          />
-        </Text>
+      <View style={{ flex: 2 }}>
+        <View style={[styles.starComponent]}>
+          <StarScore score={Number(cardInfo.review.stars)} />
+        </View>
         <Text numberOfLines={2} style={[styles.title]}>
           {cardInfo.title}
         </Text>
-        <Text>
+        <View>
           <Price cardInfo={cardInfo} />
-        </Text>
+        </View>
       </View>
     </View>
   );
