@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
-import { StarScore } from './StarScore';
+import {Text, View, StyleSheet, Image} from 'react-native';
+import StarScore from './StarScore';
 import Price from './Price';
 
 type cardInfoProps = {
