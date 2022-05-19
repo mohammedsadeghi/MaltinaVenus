@@ -12,13 +12,13 @@ function fetchProductsRequest() {
         type: FETCH_PRODUCTS_REQUEST,
     };
 }
-function fetchProductsSuccess(products: Array<object>) {
+function fetchProductsSuccess(products: object[]) {
     return {
         type: FETCH_PRODUCTS_SUCCESS,
         payload: products,
     };
 }
-function fetchProductsFail(error: object) {
+function fetchProductsFail(error: string) {
     return {
         type: FETCH_PRODUCTS_FAILURE,
         payload: error,
@@ -30,9 +30,11 @@ export const fetchProducts = (query: string) => {
         dispatch(fetchProductsRequest());
         getProducts(query).then(res => {
             if (res.status === 202) {
-                fetchProducts(query);
+                setTimeout(() => {
+                    fetchProducts(res.data.query);
+                }, res.data.after);
             } else {
-                const products = res.data;
+                const products = res.data.products;
                 dispatch(fetchProductsSuccess(products));
             }
         }).catch(error => {
